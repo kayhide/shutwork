@@ -9,7 +9,7 @@ module Shutwork
     end
 
     def from_env
-      ENV.fetch("CHATWORK_ACCESS_TOKEN")
+      ENV.fetch("CHATWORK_ACCESS_TOKEN", nil)
     end
 
     def from_user_default

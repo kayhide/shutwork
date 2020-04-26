@@ -7,7 +7,7 @@ RSpec.describe Shutwork::Token do
     subject { described_class }
 
     before do
-      allow(ENV).to receive(:fetch).with("CHATWORK_ACCESS_TOKEN") {
+      allow(ENV).to receive(:fetch).with("CHATWORK_ACCESS_TOKEN", nil) {
         "good"
       }
     end
