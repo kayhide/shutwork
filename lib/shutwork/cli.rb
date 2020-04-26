@@ -1,5 +1,6 @@
 require "optparse"
 require "shutwork/command/help"
+require "shutwork/command/me"
 
 module Shutwork
   class Cli
@@ -22,11 +23,11 @@ module Shutwork
         Shutwork::Command::Help.new.run
         return
       end
-      command = opts.parse!(@args, into: options)
+      command, _ = opts.parse!(@args, into: options)
 
       case command
-      when "list"
-        Shutwork::Command::List.new(reader).run
+      when "me"
+        Shutwork::Command::Me.new(options).run
       when nil
         Shutwork::Command::Help.new.run
       else
