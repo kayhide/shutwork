@@ -39,6 +39,17 @@ module Shutwork
       end
 
       def show room_id
+        items = @client.room_messages room_id
+        if @raw
+          puts items
+        else
+          messages = JSON.parse(items)
+          messages.each do |message|
+            puts "----------------"
+            puts ("%s  %s" % [Time.at(message["send_time"]), message.dig("account", "name")])
+            puts message["body"]
+          end
+        end
       end
     end
   end
