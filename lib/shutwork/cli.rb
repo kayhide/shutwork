@@ -15,7 +15,6 @@ module Shutwork
 
     def run
       opts = OptionParser.new
-      opts.on("-r", "--raw") { @raw = true }
       opts.on("-v", "--version") do
         puts "Version: #{Shutwork::VERSION}"
         exit 0
@@ -27,13 +26,13 @@ module Shutwork
 
 
       opts.order! ARGV
-      command, _ = opts.parse! ARGV
+      command = ARGV.shift
 
       case command
       when "me"
-        Shutwork::Command::Me.new(raw: @raw).run
+        Shutwork::Command::Me.new.run
       when "rooms"
-        Shutwork::Command::Rooms.new(raw: @raw).run
+        Shutwork::Command::Rooms.new.run
       when nil
         Shutwork::Command::Help.new.run
       else

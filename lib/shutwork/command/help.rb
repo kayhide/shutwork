@@ -7,7 +7,8 @@ Usage: shutwork COMMAND
 
 Available options:
   -h,--help                Show this help text
-     --raw                 Show raw result
+     --version             Show version
+  -r,--raw                 Show result in raw format
 
 Available commands:
   me                       Me
