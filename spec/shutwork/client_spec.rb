@@ -7,15 +7,19 @@ RSpec.describe Shutwork::Client do
 
   describe "#me" do
     it "returns me" do
-      res = subject.me
-      expect(res).not_to be nil
+      VCR.use_cassette "client/me" do
+        res = subject.me
+        expect(res).not_to be nil
+      end
     end
   end
 
   describe "#rooms" do
     it "returns rooms" do
-      res = subject.rooms
-      expect(res).not_to be nil
+      VCR.use_cassette "client/rooms" do
+        res = subject.rooms
+        expect(res).not_to be nil
+      end
     end
   end
 end

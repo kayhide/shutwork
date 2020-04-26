@@ -22,4 +22,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "faraday", [">= 1.0.0", "< 2.0"]
+  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "vcr"
 end

@@ -1,5 +1,7 @@
 require "bundler/setup"
-require "shutwork"
+require "pathname"
+
+Dir[Pathname.new(__dir__).join('support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   config.filter_run focus: true
