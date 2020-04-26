@@ -17,19 +17,26 @@ RSpec.describe Shutwork::Token do
     end
   end
 
-  describe ".from_store" do
+  describe ".from_user_default" do
+    use_tmp_dir
     subject { described_class }
+    let(:token_file) { tmp_dir.join "token/default" }
 
-    around do |example|
-      Dir.mktmpdir("shutwork-test-") do |dir|
-        @tmp_dir = Pathname.new(dir)
-        example.run
-      end
+    it "calls .from_store with 'default'" do
+      expect(subject).to receive(:from_store).with("default")
+      subject.from_user_default
     end
+  end
+
+  describe ".from_store" do
+    use_tmp_dir
+    subject { described_class }
+    let(:token_file) { tmp_dir.join "token/default" }
 
     before do
-      allow(Shutwork::Token).to receive(:storage_dir) { @tmp_dir }
-      open(@tmp_dir.join("default"), 'w') { |io| io << "bien" }
+      allow(Shutwork::Token).to receive(:storage_dir) { token_file.dirname }
+      FileUtils.mkdir_p token_file.dirname
+      open(token_file, 'w') { |io| io << "bien" }
     end
 
     it "reads from user default" do
@@ -38,17 +45,13 @@ RSpec.describe Shutwork::Token do
   end
 
   describe ".store" do
+    use_tmp_dir
     subject { described_class }
-
-    around do |example|
-      Dir.mktmpdir("shutwork-test-") do |dir|
-        @tmp_dir = Pathname.new(dir)
-        example.run
-      end
-    end
+    let(:token_file) { tmp_dir.join "token/default" }
 
     before do
-      allow(Shutwork::Token).to receive(:storage_dir) { @tmp_dir }
+      allow(Shutwork::Token).to receive(:storage_dir) { token_file.dirname }
+      FileUtils.mkdir_p token_file.dirname
     end
 
     it "stores given token" do
