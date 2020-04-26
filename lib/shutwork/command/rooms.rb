@@ -11,16 +11,17 @@ module Shutwork
         opts = OptionParser.new
         opts.program_name = "shutwork #{self.class.name.split(/::/).last.downcase}"
         opts.on("-r", "--raw", "Show results in raw format") { @raw = true }
-        @arg, _ = opts.parse ARGV
+        opts.on("-v", "--verbose", "Verbose") { @verbose = true }
+        opts.parse ARGV
       end
 
       def run
+        @args = parse_args
         token = Shutwork::Token.read
-        @client = Shutwork::Client.new token: token
+        @client = Shutwork::Client.new token: token, verbose: @verbose
 
-        parse_args
-        if @arg
-          show @arg
+        if @args.first
+          show @args.first
         else
           list
         end

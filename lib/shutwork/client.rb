@@ -8,6 +8,7 @@ module Shutwork
     def initialize opts = {}
       @base_url = opts[:base_url] || "https://api.chatwork.com/v2/"
       @token = opts[:token]
+      @verbose = opts[:verbose]
       @conn = Faraday.new(
         url: @base_url,
         headers: {
@@ -17,11 +18,27 @@ module Shutwork
     end
 
     def me
-      @conn.get("me").body
+      res = @conn.get("me")
+      if @verbose
+        $stderr.puts res.headers.to_json
+      end
+      res.body
     end
 
     def rooms
-      @conn.get("rooms").body
+      res = @conn.get("rooms")
+      if @verbose
+        $stderr.puts res.headers.to_json
+      end
+      res.body
+    end
+
+    def room_messages room_id
+      res = @conn.get("rooms/#{room_id}/messages?force=1")
+      if @verbose
+        $stderr.puts res.headers.to_json
+      end
+      res.body
     end
   end
 end
