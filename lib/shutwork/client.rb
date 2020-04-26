@@ -20,5 +20,10 @@ module Shutwork
       res = @conn.get "me"
       JSON.parse(res.body)
     end
+
+    def rooms
+      res = @conn.get "rooms"
+      JSON.parse(res.body)
+    end
   end
 end

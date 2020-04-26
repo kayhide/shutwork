@@ -1,6 +1,7 @@
 require "optparse"
 require "shutwork/command/help"
 require "shutwork/command/me"
+require "shutwork/command/rooms"
 
 module Shutwork
   class Cli
@@ -14,7 +15,7 @@ module Shutwork
 
     def run
       opts = OptionParser.new
-      opts.on("--output DIR")
+      opts.on("-r", "--raw")
       opts.on("--version") do
         puts "Version: #{Shutwork::VERSION}"
         return
@@ -28,6 +29,8 @@ module Shutwork
       case command
       when "me"
         Shutwork::Command::Me.new(options).run
+      when "rooms"
+        Shutwork::Command::Rooms.new(options).run
       when nil
         Shutwork::Command::Help.new.run
       else

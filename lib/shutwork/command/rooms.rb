@@ -3,7 +3,7 @@ require "shutwork/token"
 
 module Shutwork
   module Command
-    class Me
+    class Rooms
       def initialize options = {}
         @options = options
       end
@@ -12,10 +12,11 @@ module Shutwork
         token = Shutwork::Token.read
         client = Shutwork::Client.new token: token
         if @options[:raw]
-          puts client.me.to_json
+          puts client.rooms
         else
-          me = client.me
-          puts ("%10s  %s" % [me["account_id"], me["name"]])
+          client.rooms.each do |room|
+            puts ("%10s  %s" % [room["room_id"], room["name"]])
+          end
         end
       end
     end
