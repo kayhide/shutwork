@@ -15,27 +15,31 @@ module Shutwork
 
     def run
       opts = OptionParser.new
-      opts.on("-r", "--raw")
-      opts.on("--version") do
+      opts.on("-r", "--raw") { @raw = true }
+      opts.on("-v", "--version") do
         puts "Version: #{Shutwork::VERSION}"
-        return
+        exit 0
       end
       opts.on("-h", "--help") do
         Shutwork::Command::Help.new.run
         return
       end
-      command, _ = opts.parse!(@args, into: options)
+
+
+      opts.order! ARGV
+      command, _ = opts.parse! ARGV
 
       case command
       when "me"
-        Shutwork::Command::Me.new(options).run
+        Shutwork::Command::Me.new(raw: @raw).run
       when "rooms"
-        Shutwork::Command::Rooms.new(options).run
+        Shutwork::Command::Rooms.new(raw: @raw).run
       when nil
         Shutwork::Command::Help.new.run
       else
         puts "Unknown command: #{command}"
         Shutwork::Command::Help.new.run
+        exit 1
       end
     end
   end

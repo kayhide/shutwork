@@ -7,9 +7,11 @@ Usage: shutwork COMMAND
 
 Available options:
   -h,--help                Show this help text
+     --raw                 Show raw result
 
 Available commands:
-  list                     List ...
+  me                       Me
+  rooms                    Rooms
 EOS
       end
     end
