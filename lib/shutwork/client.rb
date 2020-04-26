@@ -17,13 +17,11 @@ module Shutwork
     end
 
     def me
-      res = @conn.get "me"
-      JSON.parse(res.body)
+      @conn.get("me").body
     end
 
     def rooms
-      res = @conn.get "rooms"
-      JSON.parse(res.body)
+      @conn.get("rooms").body
     end
   end
 end

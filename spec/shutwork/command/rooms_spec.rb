@@ -10,7 +10,7 @@ RSpec.describe Shutwork::Command::Rooms do
           "room_id" => i,
           "name" => "Room #{i}"
         }
-      end
+      end.to_json
     }
 
     before do

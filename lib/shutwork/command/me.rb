@@ -1,4 +1,5 @@
-require"optparse"
+require "json"
+require "optparse"
 
 require "shutwork/client"
 require "shutwork/token"
@@ -16,11 +17,13 @@ module Shutwork
       def run
         parse_args
         token = Shutwork::Token.read
-        client = Shutwork::Client.new token: token
+        @client = Shutwork::Client.new token: token
+
+        item = @client.me
         if @raw
-          puts client.me.to_json
+          puts item
         else
-          me = client.me
+          me = JSON.parse(item)
           puts ("%10s  %s" % [me["account_id"], me["name"]])
         end
       end

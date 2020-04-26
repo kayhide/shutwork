@@ -1,3 +1,6 @@
+require "json"
+require "optparse"
+
 require "shutwork/client"
 require "shutwork/token"
 
@@ -8,20 +11,34 @@ module Shutwork
         opts = OptionParser.new
         opts.program_name = "shutwork #{self.class.name.split(/::/).last.downcase}"
         opts.on("-r", "--raw", "Show results in raw format") { @raw = true }
-        opts.parse ARGV
+        @arg, _ = opts.parse ARGV
       end
 
       def run
-        parse_args
         token = Shutwork::Token.read
-        client = Shutwork::Client.new token: token
-        if @raw
-          puts client.rooms
+        @client = Shutwork::Client.new token: token
+
+        parse_args
+        if @arg
+          show @arg
         else
-          client.rooms.each do |room|
+          list
+        end
+      end
+
+      def list
+        items = @client.rooms
+        if @raw
+          puts items
+        else
+          rooms = JSON.parse(items)
+          rooms.each do |room|
             puts ("%10s  %s" % [room["room_id"], room["name"]])
           end
         end
+      end
+
+      def show room_id
       end
     end
   end

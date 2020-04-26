@@ -8,7 +8,7 @@ RSpec.describe Shutwork::Command::Me do
       {
         "account_id" => 1,
         "name" => "User 1"
-      }
+      }.to_json
     }
 
     before do
