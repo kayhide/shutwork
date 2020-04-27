@@ -15,6 +15,8 @@ module Shutwork
         opts.on("-v", "--verbose", "Verbose") { @verbose = true }
         opts.on("--members", "Fetch members instead of messages") { @target = :members }
         opts.on("--files", "Fetch files instead of messages") { @target = :files }
+        opts.on("--download", "Download files") { @download = true }
+        opts.on("--download-dir DIR", "Set download dir (default: download)") { |dir| @download_dir = dir }
         opts.parse args
       end
 
@@ -24,7 +26,11 @@ module Shutwork
         @client = Shutwork::Client.new token: token, verbose: @verbose
 
         if @args.first
-          show @args.first
+          if @download
+            download @args.first
+          else
+            show @args.first
+          end
         else
           list
         end
@@ -56,6 +62,24 @@ module Shutwork
           puts items
         else
           JSON.parse(items).each(&method(@display))
+        end
+      end
+
+      def download room_id
+        dir = Pathname.new(@download_dir || "download").join(room_id.to_s)
+        items = @client.room_files room_id
+        files = JSON.parse(items)
+        files.each do |file|
+          dst = dir.join file["filename"]
+          if dst.exist?
+            say_status "exist", dst, :cyan
+          else
+            say_status "download", dst, :yellow
+            x = @client.file room_id, file["file_id"]
+            url = JSON.parse(x)["download_url"]
+            at = Time.at file["upload_time"]
+            download_file url, dst, at
+          end
         end
       end
     end

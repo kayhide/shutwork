@@ -39,6 +39,10 @@ module Shutwork
       process @conn.get("rooms/#{room_id}/files")
     end
 
+    def file room_id, file_id
+      process @conn.get("rooms/#{room_id}/files/#{file_id}?create_download_url=1")
+    end
+
     def process res
       if @verbose
         $stderr.puts res.headers.to_json
