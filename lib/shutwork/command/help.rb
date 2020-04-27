@@ -1,6 +1,8 @@
+require "shutwork/command/base"
+
 module Shutwork
   module Command
-    class Help
+    class Help < Base
       def run
         puts <<EOS
 Usage: shutwork COMMAND

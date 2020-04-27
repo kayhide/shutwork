@@ -17,14 +17,15 @@ module Shutwork
     end
 
     def from_store name
-      file = storage_dir.join name
+      file = token_path name
       if File.exist? file
         open(file, &:read)
       end
     end
 
     def store token, name = "default"
-      file = storage_dir.join name
+      file = token_path name
+      FileUtils.mkdir_p file.dirname
       open(file, 'w') do |io|
         io << token.strip
       end
@@ -32,6 +33,10 @@ module Shutwork
 
     def storage_dir
       Pathname.new("~/.shutwork/token").expand_path
+    end
+
+    def token_path name = "default"
+      storage_dir.join name
     end
   end
 end

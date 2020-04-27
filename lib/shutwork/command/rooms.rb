@@ -2,11 +2,12 @@ require "json"
 require "optparse"
 
 require "shutwork/client"
+require "shutwork/command/base"
 require "shutwork/token"
 
 module Shutwork
   module Command
-    class Rooms
+    class Rooms < Base
       def parse_args
         opts = OptionParser.new
         opts.program_name = "shutwork #{self.class.name.split(/::/).last.downcase}"

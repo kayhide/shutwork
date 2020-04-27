@@ -2,6 +2,7 @@ require "optparse"
 require "shutwork/command/help"
 require "shutwork/command/me"
 require "shutwork/command/rooms"
+require "shutwork/command/token"
 
 module Shutwork
   class Cli
@@ -33,6 +34,8 @@ module Shutwork
         Shutwork::Command::Me.new.run
       when "rooms"
         Shutwork::Command::Rooms.new.run
+      when "token"
+        Shutwork::Command::Token.new.run
       when nil
         Shutwork::Command::Help.new.run
       else
