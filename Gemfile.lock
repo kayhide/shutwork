@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shutwork (0.1.0)
+    shutwork (0.2.0)
       faraday (>= 1.0.0, < 2.0)
       thor (>= 1.0.0, < 2.0)
 
