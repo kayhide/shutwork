@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.chatwork.com/v2/rooms/1/files/1?create_download_url=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Chatworktoken:
+      - 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '927'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 27 Apr 2020 07:52:48 GMT
+      X-Amzn-Requestid:
+      - b8b65d36-6c2f-44a6-a2c8-961c03e5072b
+      X-Ratelimit-Reset:
+      - '1587974191'
+      X-Amzn-Remapped-Connection:
+      - keep-alive
+      X-Ratelimit-Remaining:
+      - '296'
+      X-Amz-Apigw-Id:
+      - LotUmHhrtjMFpcQ=
+      Cache-Control:
+      - no-cache
+      X-Amzn-Remapped-Server:
+      - nginx
+      X-Ratelimit-Limit:
+      - '300'
+      X-Amzn-Remapped-Date:
+      - Mon, 27 Apr 2020 07:52:48 GMT
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 750e3ab1422892abff69852252bac004.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - NRT51-C1
+      X-Amz-Cf-Id:
+      - ppnK0LsV6uX7pr_Yb5u0RfzmRaVNgGuzvL-mS5r7B5Zfmbm4FZBJOg==
+    body:
+      encoding: UTF-8
+      string: '{"filesize":235524,"filename":"file-1.jpg","upload_time":1548516614,"download_url":"https://url/to/the/file"}'
+    http_version: null
+  recorded_at: Mon, 27 Apr 2020 07:52:48 GMT
+recorded_with: VCR 5.1.0

@@ -60,6 +60,16 @@ RSpec.describe Shutwork::Client do
     end
   end
 
+  describe "#file" do
+    it "returns list of files" do
+      VCR.use_cassette "client/file" do
+        res = subject.file 1, 1
+        item = JSON.parse(res)
+        expect(item).to include(*%w(filename filesize upload_time download_url))
+      end
+    end
+  end
+
   context "without authorized" do
     let(:token) { "token-not-authorized" }
 
