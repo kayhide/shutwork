@@ -34,7 +34,7 @@ To get rooms:
 
 To get messages of a room:
 
-    $ shutwork 12000000
+    $ shutwork rooms 12000000
     ----------------
     2019-10-23 01:19:50 +0900  Alice
     Hey, it is working!
