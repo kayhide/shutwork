@@ -23,8 +23,43 @@ module Shutwork
 
       def display_message item
         puts "----------------"
-        puts ("%s  %s" % [Time.at(item["send_time"]), item.dig("account", "name")])
+        puts ("%s  %s" % [
+          format_datetime(item["send_time"]),
+          item.dig("account", "name")
+        ])
         puts item["body"]
+      end
+
+      def display_file item
+        puts ("%s  %6s  %s" % [
+          format_datetime(item["upload_time"]),
+          format_filesize(item["filesize"]),
+          item["filename"]]
+        )
+      end
+
+      def format_datetime x
+        Time.at(x).to_s
+      end
+
+      def format_filesize x
+        to_filesize_human x
+      end
+
+      def to_filesize_human x
+        x = %w(KB MB GB TB).inject([x.to_f, 'B']) do |acc, u|
+          v = acc.first / 1024
+          if v.round(2) < 0.90
+            acc
+          else
+            [v, u]
+          end
+        end
+        if x.first >= 10.0 || x.last == 'B'
+          "%.0f%s" % x
+        else
+          "%.1f%s" % x
+        end
       end
     end
   end

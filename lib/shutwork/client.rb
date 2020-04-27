@@ -31,6 +31,14 @@ module Shutwork
       process @conn.get("rooms/#{room_id}/messages?force=1")
     end
 
+    def room_members room_id
+      process @conn.get("rooms/#{room_id}/members")
+    end
+
+    def room_files room_id
+      process @conn.get("rooms/#{room_id}/files")
+    end
+
     def process res
       if @verbose
         $stderr.puts res.headers.to_json

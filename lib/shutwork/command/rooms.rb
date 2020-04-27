@@ -13,6 +13,8 @@ module Shutwork
         opts.program_name = "shutwork #{self.class.name.split(/::/).last.downcase}"
         opts.on("-r", "--raw", "Show results in raw format") { @raw = true }
         opts.on("-v", "--verbose", "Verbose") { @verbose = true }
+        opts.on("--members", "Fetch members instead of messages") { @target = :members }
+        opts.on("--files", "Fetch files instead of messages") { @target = :files }
         opts.parse args
       end
 
@@ -41,13 +43,19 @@ module Shutwork
         items =
           case @target
           when :members
+            @display = :display_account
+            @client.room_members room_id
+          when :files
+            @display = :display_file
+            @client.room_files room_id
           else
+            @display = :display_message
             @client.room_messages room_id
           end
         if @raw
           puts items
         else
-          JSON.parse(items).each(&method(:display_message))
+          JSON.parse(items).each(&method(@display))
         end
       end
     end
