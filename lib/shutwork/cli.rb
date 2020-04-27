@@ -31,11 +31,11 @@ module Shutwork
 
       case command
       when "me"
-        Shutwork::Command::Me.new.run
+        Shutwork::Command::Me.new.run ARGV.clone
       when "rooms"
-        Shutwork::Command::Rooms.new.run
+        Shutwork::Command::Rooms.new.run ARGV.clone
       when "token"
-        Shutwork::Command::Token.new.run
+        Shutwork::Command::Token.new.run ARGV.clone
       when nil
         Shutwork::Command::Help.new.run
       else

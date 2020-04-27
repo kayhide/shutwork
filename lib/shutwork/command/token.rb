@@ -4,16 +4,16 @@ require "shutwork/token"
 module Shutwork
   module Command
     class Token < Base
-      def parse_args
+      def parse_args args
         opts = OptionParser.new
-        opts.program_name = "shutwork #{self.class.name.split(/::/).last.downcase}"
+        opts.program_name = "shutwork #{self.class.name.split(/::/).last.downcase} [TOKEN]"
         opts.on("--skip-verify", "Skips validity check") { @skip_verify = true }
         opts.on("-v", "--verbose", "Verbose") { @verbose = true }
-        opts.parse ARGV
+        opts.parse args
       end
 
-      def run
-        @token = parse_args.first&.strip
+      def run args = []
+        @token = parse_args(args).first&.strip
 
         if @token
           unless @skip_verify

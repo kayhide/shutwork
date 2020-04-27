@@ -8,16 +8,16 @@ require "shutwork/token"
 module Shutwork
   module Command
     class Rooms < Base
-      def parse_args
+      def parse_args args
         opts = OptionParser.new
         opts.program_name = "shutwork #{self.class.name.split(/::/).last.downcase}"
         opts.on("-r", "--raw", "Show results in raw format") { @raw = true }
         opts.on("-v", "--verbose", "Verbose") { @verbose = true }
-        opts.parse ARGV
+        opts.parse args
       end
 
-      def run
-        @args = parse_args
+      def run args = []
+        @args = parse_args args
         token = Shutwork::Token.read
         @client = Shutwork::Client.new token: token, verbose: @verbose
 
