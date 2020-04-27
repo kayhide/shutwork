@@ -33,24 +33,21 @@ module Shutwork
         if @raw
           puts items
         else
-          rooms = JSON.parse(items)
-          rooms.each do |room|
-            puts ("%10s  %s" % [room["room_id"], room["name"]])
-          end
+          JSON.parse(items).each(&method(:display_room))
         end
       end
 
       def show room_id
-        items = @client.room_messages room_id
+        items =
+          case @target
+          when :members
+          else
+            @client.room_messages room_id
+          end
         if @raw
           puts items
         else
-          messages = JSON.parse(items)
-          messages.each do |message|
-            puts "----------------"
-            puts ("%s  %s" % [Time.at(message["send_time"]), message.dig("account", "name")])
-            puts message["body"]
-          end
+          JSON.parse(items).each(&method(:display_message))
         end
       end
     end

@@ -25,8 +25,7 @@ module Shutwork
         if @raw
           puts item
         else
-          me = JSON.parse(item)
-          puts ("%10s  %s" % [me["account_id"], me["name"]])
+          display_account JSON.parse(item)
         end
       end
     end
