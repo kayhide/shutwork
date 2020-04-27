@@ -10,7 +10,46 @@ Install `shutwork` as:
 
 ## Usage
 
-TBD
+To get me:
+
+    $ shutwork me
+
+For the first time, it will complain about the absense of token and tell you what to do.
+Follow the displayed instruction and supply your token.
+
+When token is prepared, `me` command will show your account id and your name.
+
+    $ shutwork me
+        123456  Alice
+
+To get rooms:
+
+    $ shutwork rooms
+      12000000  A room
+      29000000  Bob
+      47000000  Another room
+     188000000  Yet anoter room
+    ....
+
+To get messages of a room:
+
+    $ shutwork 12000000
+    ----------------
+    2019-10-23 01:19:50 +0900  Alice
+    Hey, it is working!
+    ----------------
+    2019-10-23 12:49:16 +0900  Bob
+    Wow, unbelievable!
+    ----------------
+    ....
+
+
+### Note
+
+Because of the limitation of Chatwork API, messages cannot retrieved more than 100 items.
+
+It only collects the most recent 100 messages.
+
 
 
 ## Development
