@@ -43,6 +43,19 @@ module Shutwork
         Shutwork::Command::Help.new.run
         exit 1
       end
+
+    rescue Shutwork::AuthError
+      $stderr.puts "Chatwork Token is invalid or not supplied."
+      $stderr.puts
+      $stderr.puts "1. Get your token as instructed:"
+      $stderr.puts "  https://help.chatwork.com/hc/ja/articles/115000172402-API%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E3%82%92%E7%99%BA%E8%A1%8C%E3%81%99%E3%82%8B"
+      $stderr.puts
+      $stderr.puts "2. Set it as:"
+      $stderr.puts "  shutwork token <YOUR_TOKEN>"
+      $stderr.puts
+      $stderr.puts "3. Check if it works as:"
+      $stderr.puts "  shutwork me"
+      $stderr.puts
     end
   end
 end
