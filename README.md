@@ -1,6 +1,7 @@
 # Shutwork
 
 [![Build Status](https://travis-ci.com/kayhide/shutwork.svg?branch=master)](https://travis-ci.com/kayhide/shutwork)
+[![Gem Version](https://badge.fury.io/rb/shutwork.svg)](https://badge.fury.io/rb/shutwork)
 
 ## Installation
 
