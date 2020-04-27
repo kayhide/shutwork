@@ -11,6 +11,8 @@ Install `shutwork` as:
 
 ## Usage
 
+### About me
+
 To get me:
 
     $ shutwork me
@@ -22,6 +24,8 @@ When token is prepared, `me` command will show your account id and your name.
 
     $ shutwork me
         123456  Alice
+
+### List rooms and messages
 
 To get rooms:
 
@@ -43,6 +47,25 @@ To get messages of a room:
     Wow, unbelievable!
     ----------------
     ....
+
+### List members and files
+
+To list memebers at a room:
+
+    $ shutwork rooms 12000000 --members
+        123456  Alice
+      29000000  Bob
+    ...
+
+To list files at a room:
+
+    $ shutwork rooms 12000000 --files
+    2016-08-30 16:12:31 +0900   544KB  help_me.jpg
+    2016-09-02 12:26:26 +0900   229KB  maybe_broken.jpg
+    2016-10-15 19:59:53 +0900   1.0MB  smoking_melting.jpg
+    2016-11-23 21:52:26 +0900   253KB  seriously_damaged.jpg
+    2017-01-28 16:05:37 +0900   204KB  rip.jpg
+    ...
 
 
 ### Note
