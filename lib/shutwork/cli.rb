@@ -56,6 +56,10 @@ module Shutwork
       $stderr.puts "3. Check if it works as:"
       $stderr.puts "  shutwork me"
       $stderr.puts
+
+    rescue Errno::EPIPE
+      exit 0
+
     end
   end
 end
