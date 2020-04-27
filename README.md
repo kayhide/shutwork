@@ -47,7 +47,7 @@ To get messages of a room:
 
 ### Note
 
-Because of the limitation of Chatwork API, messages cannot retrieved more than 100 items.
+Because of the limitation of Chatwork API, messages cannot be retrieved more than 100 items.
 
 It only collects the most recent 100 messages.
 
