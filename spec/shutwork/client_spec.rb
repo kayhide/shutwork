@@ -37,4 +37,16 @@ RSpec.describe Shutwork::Client do
       end
     end
   end
+
+  context "without authorized" do
+    let(:token) { "token-not-authorized" }
+
+    it "raises an error" do
+      VCR.use_cassette "client/me--unauthorized" do
+        expect {
+          subject.me
+        }.to raise_error(Shutwork::AuthError)
+      end
+    end
+  end
 end

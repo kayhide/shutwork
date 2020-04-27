@@ -2,5 +2,6 @@ require "shutwork/version"
 
 module Shutwork
   class Error < StandardError; end
-  # Your code goes here...
+
+  class AuthError < Error; end
 end

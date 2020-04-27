@@ -1,6 +1,8 @@
 require "faraday"
 require "json"
 
+require "shutwork"
+
 module Shutwork
   class Client
     attr_reader :base_url
@@ -18,27 +20,29 @@ module Shutwork
     end
 
     def me
-      res = @conn.get("me")
-      if @verbose
-        $stderr.puts res.headers.to_json
-      end
-      res.body
+      process @conn.get("me")
     end
 
     def rooms
-      res = @conn.get("rooms")
-      if @verbose
-        $stderr.puts res.headers.to_json
-      end
-      res.body
+      process @conn.get("rooms")
     end
 
     def room_messages room_id
-      res = @conn.get("rooms/#{room_id}/messages?force=1")
+      process @conn.get("rooms/#{room_id}/messages?force=1")
+    end
+
+    def process res
       if @verbose
         $stderr.puts res.headers.to_json
       end
+      verify! res
       res.body
+    end
+
+    def verify! res
+      if res.status.to_s !~ /2../
+        raise Shutwork::AuthError.new(res.body)
+      end
     end
   end
 end

@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.chatwork.com/v2/me
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Chatworktoken:
+      - token-not-authorized
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '32'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 27 Apr 2020 02:18:50 GMT
+      X-Amzn-Requestid:
+      - 39db0797-31a9-4a44-82e7-72b6fbee88c5
+      X-Amzn-Remapped-Connection:
+      - keep-alive
+      X-Amz-Apigw-Id:
+      - Ln8ZuHQTNjMFe4g=
+      X-Amzn-Remapped-Server:
+      - nginx
+      X-Amzn-Remapped-Www-Authenticate:
+      - Bearer error="invalid_token", error_description="Invalid access token"
+      X-Amzn-Remapped-Date:
+      - Mon, 27 Apr 2020 02:18:50 GMT
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 7bb9966b04de86089d344410de326378.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - NRT51-C1
+      X-Amz-Cf-Id:
+      - dfurf2sxrlpencp_KX52z6v8PR6QqxU0od8uL5OhIMvLmyoH0d5Qcw==
+    body:
+      encoding: UTF-8
+      string: '{"errors":["Invalid API Token"]}'
+    http_version: null
+  recorded_at: Mon, 27 Apr 2020 02:18:50 GMT
+recorded_with: VCR 5.1.0
