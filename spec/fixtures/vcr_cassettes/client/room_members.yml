@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.chatwork.com/v2/rooms/1/members
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Chatworktoken:
+      - 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 27 Apr 2020 07:00:39 GMT
+      X-Amzn-Requestid:
+      - 287b2927-06d8-4597-9e8d-3edd9e06d68e
+      X-Ratelimit-Reset:
+      - '1587970842'
+      X-Amzn-Remapped-Connection:
+      - keep-alive
+      X-Ratelimit-Remaining:
+      - '298'
+      X-Amz-Apigw-Id:
+      - LolrsEuINjMFlmQ=
+      Cache-Control:
+      - no-cache
+      X-Amzn-Remapped-Server:
+      - nginx
+      X-Ratelimit-Limit:
+      - '300'
+      X-Amzn-Remapped-Date:
+      - Mon, 27 Apr 2020 07:00:39 GMT
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6384bc0279e53f33ed2c6d16ae49a04d.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - NRT51-C1
+      X-Amz-Cf-Id:
+      - zDCiJixIrQuTSVISwXquO9oFYdyPnE9St1kwE3bIF6F54zCAVy6dCg==
+    body:
+      encoding: ASCII-8BIT
+      string: '[
+        {"account_id":1,"name":"User 1"},
+        {"account_id":2,"name":"User 2"},
+        {"account_id":3,"name":"User 3"} 
+        ]'
+    http_version: null
+  recorded_at: Mon, 27 Apr 2020 07:00:39 GMT
+recorded_with: VCR 5.1.0

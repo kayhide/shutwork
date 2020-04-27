@@ -38,6 +38,28 @@ RSpec.describe Shutwork::Client do
     end
   end
 
+  describe "#room_members" do
+    it "returns list of members" do
+      VCR.use_cassette "client/room_members" do
+        res = subject.room_members 1
+        items = JSON.parse(res)
+        expect(items.length).to eq 3
+        expect(items).to all include(*%w(account_id name))
+      end
+    end
+  end
+
+  describe "#room_files" do
+    it "returns list of files" do
+      VCR.use_cassette "client/room_files" do
+        res = subject.room_files 1
+        items = JSON.parse(res)
+        expect(items.length).to eq 4
+        expect(items).to all include(*%w(filename filesize upload_time))
+      end
+    end
+  end
+
   context "without authorized" do
     let(:token) { "token-not-authorized" }
 
