@@ -67,6 +67,29 @@ To list files at a room:
     2017-01-28 16:05:37 +0900   204KB  rip.jpg
     ...
 
+### Download files
+
+To download files which is uploaded onto a room:
+
+    $ shutwork rooms 12000000 --download
+        download  download/12000000/file-1.jpg
+        download  download/12000000/file-2.jpg
+        download  download/12000000/file-3.jpg
+        download  download/12000000/file-4.jpg
+    ....
+
+Then files are stored at `download/12000000` directory.
+
+Optionally, you can specify the download directory as:
+
+    $ shutwork rooms 12000000 --download --download-dir my/photos
+        download  my/photos/12000000/file-1.jpg
+        download  my/photos/12000000/file-2.jpg
+        download  my/photos/12000000/file-3.jpg
+        download  my/photos/12000000/file-4.jpg
+    ....
+    
+And files are downloaded into `my/photos/12000000` directory.
 
 ### Note
 
